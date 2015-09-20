@@ -13,7 +13,11 @@ module.exports = function(app, passport) {
 		res.render('login.ejs', {message: req.flash('loginMessage') });
 	});
 
-	//app.post('/login', stuff);
+	app.post('/login', passport.authenticate('local-login', {
+		successRedirect: '/profile',
+		failureRedirect: '/login',
+		failureFlash: true
+	}));
 	
 	
 	
@@ -22,7 +26,11 @@ module.exports = function(app, passport) {
 		res.render('signup.ejs', {message: req.flash('signupMessage') });
 	});
 	
-	//app.post('/signup', stuff);
+	app.post('/signup', passport.authenticate('local-signup', {
+		successRedirect : '/profile',
+		failureRedirect : '/signup',
+		failureFlash : true
+	}));
 	
 	
 	
